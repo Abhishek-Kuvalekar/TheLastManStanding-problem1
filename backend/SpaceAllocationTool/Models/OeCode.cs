@@ -5,5 +5,7 @@ namespace SpaceAllocationTool.Models {
         public string? OeCodeValue { get; set; }
 
         public virtual OeCode? Parent { get; set; }
+
+        public virtual Department? Department { get; set; }
     }
 }

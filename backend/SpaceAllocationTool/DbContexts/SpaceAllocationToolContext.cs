@@ -3,16 +3,17 @@ using SpaceAllocationTool.Models;
 
 namespace SpaceAllocationTool.DbContexts {
     public class SpaceAllocationToolContext: DbContext {
-        public DbSet<Employee> employees { get; set; }
-        public DbSet<OeCode> oeCodes { get; set; }
-        public DbSet<EmployeeLevel> employeeLevels { get; set; }
-        public DbSet<EmployeeOrganization> employeeOrganizations { get; set; }
-        public DbSet<EmployeeRole> employeeRoles { get; set; }
-        public DbSet<Building> buildings { get; set; }
-        public DbSet<Floor> floors { get; set; }
-        public DbSet<Room> rooms { get; set; }
-        public DbSet<Seat> seats { get; set; }
-        public DbSet<Wing> wings { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<OeCode> OeCodes { get; set; }
+        public DbSet<EmployeeLevel> EmployeeLevels { get; set; }
+        public DbSet<EmployeeOrganization> EmployeeOrganizations { get; set; }
+        public DbSet<EmployeeRole> EmployeeRoles { get; set; }
+        public DbSet<Building> Buildings { get; set; }
+        public DbSet<Floor> Floors { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+        public DbSet<Seat> Seats { get; set; }
+        public DbSet<Wing> Wings { get; set; }
 
         public SpaceAllocationToolContext(DbContextOptions<SpaceAllocationToolContext> options): base(options) {
 
@@ -20,6 +21,7 @@ namespace SpaceAllocationTool.DbContexts {
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             // Auto Increment of Primary Keys
+            modelBuilder.Entity<Department>().Property(e => e.DepartmentId).ValueGeneratedOnAdd();
             modelBuilder.Entity<Employee>().Property(e => e.EmployeeId).ValueGeneratedOnAdd();
             modelBuilder.Entity<OeCode>().Property(e => e.OeCodeId).ValueGeneratedOnAdd();
             modelBuilder.Entity<EmployeeLevel>().Property(e => e.EmployeeLevelId).ValueGeneratedOnAdd();
