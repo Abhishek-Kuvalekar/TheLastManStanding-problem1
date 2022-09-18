@@ -1,0 +1,53 @@
+<div class="flex-row infra-selector justify-content-center mb-10 p-10">
+    <form-field label="Building" class="mr-10">
+        <select class="form-select" [ngModel]="selectedBuildingId" (ngModelChange)="onSelectBuilding($event)">
+            <option *ngFor="let building of buildings" [value]="building.BuildingId">{{ building.BuildingName }}</option>
+        </select>
+    </form-field>
+    <form-field label="Floor">
+        <select class="form-select" [ngModel]="selectedFloorId" (ngModelChange)="onSelectFloor($event)">
+            <option *ngFor="let floor of floors" [value]="floor.FloorId">{{ floor.FloorName }}</option>
+        </select>
+    </form-field>
+</div>
+<div class="flex-column floor-plan justify-content-start align-items-center height-100p">
+    <div class="flex-row floor-plan-legend justify-content-start align-items-center">
+        <span class="mr-10">
+            <i class="fa fa-circle opaque-blue"></i> Selected Seats
+        </span>
+        <span class="mr-10">
+            <i class="fa fa-circle grey-light"></i> Unavailable Seats
+        </span>
+        <span>
+            <i class="fa fa-circle grey-dark"></i> Available Seats
+        </span>
+    </div>
+    <div class="panel flex-column">
+        <div class="flex-row wings-wrapper" *ngFor="let row of getRows(wings)">
+            <div class="wing-container flex-column" *ngFor="let column of getColumns(wings, row)">
+                <ng-container *ngIf="getItemAtLocation(wings, row, column) as wing">
+                    <div class="wing-info flex-row justify-content-between">
+                        <div class="wing-title blue flex-row align-items-center">
+                            <h3>{{ wing.WingName }}</h3>
+                        </div>
+                        <div class="wing-stats dark-grey flex-row align-items-center">
+                            <span>Total Seats: {{ wing.TotalSeats }}</span>
+                        </div>
+                    </div>
+                    <div class="seats-wrapper flex-column height-100p">
+                        <div class="flex-row seats-row" *ngFor="let row of getRows(getSeatsInAWing(wing.WingId))">
+                            <div class="seat-cell" *ngFor="let column of getColumns(getSeatsInAWing(wing.WingId), row)">
+                                <ng-container *ngIf="getItemAtLocation(getSeatsInAWing(wing.WingId), row, column) as seat">
+                                    <i class="fa fa-desktop"
+                                        (mouseenter)="selectSeat($event, seat)"
+                                        (click)="toggleSelection(seat)"
+                                        [ngClass]="selectedSeatIds.has(seat.SeatId) ? 'opaque-blue' : ''"></i>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

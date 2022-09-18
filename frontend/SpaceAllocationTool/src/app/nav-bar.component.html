@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-blue p-10">
+    <a class="navbar-brand">Space Allocation Tool</a>
+
+    <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navBarToggler"
+        aria-controls="navBarToggler"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        (click)="isNavbarCollapsed = !isNavbarCollapsed">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navBarToggler" [ngClass]="isNavbarCollapsed ? 'd-none' : 'd-block'">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item cursor-p" *ngFor="let item of navBarItems" [ngClass]="isNavBarItemActive(item) ? 'active' : ''">
+                <a class="nav-link" (click)="activateRoute(item.Route)">{{ item.Name }}</a>
+            </li>
+        </ul>
+    </div>
+</nav>

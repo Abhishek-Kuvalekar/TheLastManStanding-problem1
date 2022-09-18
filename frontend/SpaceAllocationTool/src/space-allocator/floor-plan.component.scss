@@ -1,0 +1,36 @@
+@import '../styles/variables.scss';
+
+.wing-container {
+    border: 1px dotted rgb(0, 0, 0, 0.5);
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.flex-row {
+    & > .wing-container:not(:last-child) {
+        margin-right: 10px;
+    }
+}
+
+.wing-info {
+    border-bottom: 1px dotted rgb(0, 0, 0, 0.5);
+    padding: 0px 10px;
+}
+
+.seats-row {
+    padding: 3px;
+}
+
+.seat-cell {
+    padding: 3px;
+    i {
+        font-size: 36px;
+        &.disabled {
+            color: $light-grey;
+        }
+    }
+
+    &:not(:last-child) {
+        margin-right: 5px;
+    }
+}

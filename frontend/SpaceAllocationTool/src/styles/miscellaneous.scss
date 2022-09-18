@@ -1,0 +1,58 @@
+@import 'colors.scss';
+
+html {
+    height: 100% !important;
+    min-height: 100% !important;
+}
+
+body {
+    background-color: $bg-color;
+    color: $dark-grey;
+    min-height: 100% !important;
+    height: 100% !important;
+}
+
+.p-10 {
+    padding: 10px;
+}
+
+.mr-5 {
+    margin-right: 5px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.d-block {
+    display: block;
+}
+
+.d-none {
+    display: none;
+}
+
+.cursor-p {
+    cursor: pointer;
+}
+
+.height-100p {
+    min-height: 100% !important;
+    height: 100% !important;
+}
+
+.width-100p {
+    width: 100% !important;
+}
+
+.panel {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid $light-grey;
+    border-radius: 10px;
+
+}

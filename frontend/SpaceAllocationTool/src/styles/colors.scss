@@ -1,0 +1,21 @@
+@import 'variables.scss';
+
+.bg-blue {
+    background-color: $blue;
+}
+
+.blue {
+    color: $blue;
+}
+
+.grey-light {
+    color: $light-grey;
+}
+
+.grey-dark {
+    color: $dark-grey
+}
+
+.opaque-blue {
+    color: $opaque-blue;
+}

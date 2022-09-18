@@ -1,0 +1,1 @@
+export const SpaceAllocationToolHttpBaseUrl = 'https://localhost:7190';

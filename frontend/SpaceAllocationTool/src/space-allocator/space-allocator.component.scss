@@ -1,0 +1,10 @@
+@import '../styles/colors.scss';
+
+.allocation-container {
+    flex-basis: 25%;
+    border-right: 1px solid rgb(0, 0, 0, 0.1);
+}
+
+.floor-plan-container {
+    flex-basis: 75%;
+}

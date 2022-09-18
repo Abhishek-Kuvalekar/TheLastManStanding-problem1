@@ -1,0 +1,9 @@
+@import 'variables';
+
+.form-control:focus {
+    box-shadow: 0 0 0 .25rem $focused-border-color !important;
+}
+
+.form-select:focus {
+    box-shadow: 0 0 0 .25rem $focused-border-color !important;
+}
