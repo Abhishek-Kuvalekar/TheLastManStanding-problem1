@@ -4,6 +4,10 @@ namespace SpaceAllocationTool.Models {
 
         public string? WingName { get; set; }
 
+        public int RowNumber { get; set; }
+
+        public int ColumnNumber { get; set; }
+
         public int TotalSeats { get; set; }
 
         public int TotalRooms { get; set; }

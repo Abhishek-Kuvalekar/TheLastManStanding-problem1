@@ -19,7 +19,7 @@ namespace SpaceAllocationTool.Repositories {
             _db.Wings.AsEnumerable().ToList().ForEach(wing => {
                 for (int i = 1; i <= 10; ++i) {
                     for (int j = 1; j <= (wing.TotalSeats / 10); ++j) {
-                        AddSeat(i, j, wing);
+                        AddSeat(j, i, wing);
                     }
                 }
             });

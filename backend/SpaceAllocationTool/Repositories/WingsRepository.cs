@@ -21,18 +21,20 @@ namespace SpaceAllocationTool.Repositories {
                 return;
             }
             _db.Floors.AsEnumerable().ToList().ForEach(floor => {
-                AddWing("A", 3, 40, floor);
-                AddWing("B", 3, 40, floor);
-                AddWing("C", 3, 40, floor);
-                AddWing("D", 3, floor.FloorId == lastFloor.FloorId ? 50 : 40, floor);
+                AddWing("A", 1, 1, 3, 40, floor);
+                AddWing("B", 1, 2, 3, 40, floor);
+                AddWing("C", 2, 1, 3, 40, floor);
+                AddWing("D", 2, 2, 3, floor.FloorId == lastFloor.FloorId ? 50 : 40, floor);
             });
             _db.SaveChanges();
         }
 
-        private void AddWing(string wingName, int totalRooms, int totalSeats, Floor floor) {
+        private void AddWing(string wingName, int rowNumber, int columnNumber, int totalRooms, int totalSeats, Floor floor) {
             _db.Wings.Add(new Wing
             {
-                WingName = wingName, 
+                WingName = wingName,
+                RowNumber = rowNumber,
+                ColumnNumber = columnNumber,
                 TotalRooms = totalRooms,
                 TotalSeats = totalSeats,
                 Floor = floor
