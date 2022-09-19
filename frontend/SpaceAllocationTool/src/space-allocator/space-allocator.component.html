@@ -1,8 +1,76 @@
 <div class="flex-row height-100p">
-    <div class="allocation-container">
-        <h3>Allocation</h3>
+    <div class="allocation-container flex-column">
+        <div class="flex-row justify-content-center align-items-center mb-10">
+            <span class="grey-dark allocation-title">Allocations</span>
+        </div>
+        <div class="flex-column allocation-form">
+            <form-field label="Date Range" class="mb-10">
+                <input class="form-control" #drp="bsDaterangepicker" bsDaterangepicker [(ngModel)]="dateRange">
+            </form-field>
+            <form-field label="Employee" class="mb-10">
+                <select class="form-select" [ngModel]="selectedEmployeeId" (ngModelChange)="onSelectEmployee($event);">
+                    <option [value]=""></option>
+                    <option [value]="subordinate.EmployeeId" *ngFor="let subordinate of subordinates">{{ subordinate.EmployeeName }}</option>
+                </select>
+            </form-field>
+        </div>
+        <form-field label="Employee Details" class="mb-10" *ngIf="selectedEmployee">
+            <div class="employee-details width-100p p-10">
+                <div class="flex-column width-100p">
+                    <table>
+                        <tr>
+                            <td class="bold">Name</td>
+                            <td>:</td>
+                            <td>{{ selectedEmployee.EmployeeName }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Email</td>
+                            <td>:</td>
+                            <td>{{ selectedEmployee.Email }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Department</td>
+                            <td>:</td>
+                            <td>{{ selectedEmployee.OeCode.Department.DepartmentName }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">OE Code</td>
+                            <td>:</td>
+                            <td>{{ selectedEmployee.OeCode.OeCodeValue }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Title</td>
+                            <td>:</td>
+                            <td>{{ selectedEmployee.Role.EmployeeRoleName }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Team Size</td>
+                            <td>:</td>
+                            <td>{{ subordinateTeamSizeOfSelectedEmployee }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </form-field>
+        <form-field label="Selected Seats" class="mb-10">
+            <div class="selected-seats flex-column width-100p" style="height: 100px;">
+
+            </div>
+        </form-field>
+        <div class="flex-row justify-content-center align-items-center mb-10">
+            <button class="btn btn-primary width-fit-content" (click)="saveAllocations()">Submit</button>
+        </div>
+        <form-field label="Mock Log In">
+            <div class="flex-row width-100p justify-content-center">
+                <mock-login (onUserLoggedIn)="onUserLoginChange($event)"></mock-login>
+            </div>
+        </form-field>
     </div>
     <div class="floor-plan-container">
-        <floor-plan></floor-plan>
+        <floor-plan
+            [availableSeats]="availableSeats"
+            [allocatedSeats]="allocatedSeats"
+            (seatRemoved)="onSeatRemoved($event)"
+            (seatSelected)="onSeatSelected($event)"></floor-plan>
     </div>
 </div>

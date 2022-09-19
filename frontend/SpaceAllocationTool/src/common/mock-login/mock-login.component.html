@@ -1,0 +1,14 @@
+<div class="login-container flex-column">
+    <form-field label="Employee Role" class="mb-10">
+        <select class="form-select" [ngModel]="selectedEmployeeRoleId" (ngModelChange)="onSelectEmployeeRole($event)">
+            <option [value]=""></option>
+            <option [value]="employeeRole.EmployeeRoleId" *ngFor="let employeeRole of employeeRoles">{{ employeeRole.EmployeeRoleName }}</option>
+        </select>
+    </form-field>
+    <form-field label="Employee">
+        <select class="form-select" [ngModel]="selectedEmployeeId" (ngModelChange)="onSelectEmployee($event)">
+            <option [value]=""></option>
+            <option [value]="employee.EmployeeId" *ngFor="let employee of employees">{{ employee.EmployeeName }}</option>
+        </select>
+    </form-field>
+</div>

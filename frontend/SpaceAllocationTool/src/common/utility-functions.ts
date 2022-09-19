@@ -1,3 +1,5 @@
+import { DatePipe } from "@angular/common";
+
 export function convertToCamelCase(str: string): string {
     if (!str) {
         return str;
@@ -16,4 +18,9 @@ export function distinct(items: any[]): any[] {
     }
 
     return items.filter((v, i, a) => a.indexOf(v) === i);
+}
+
+export function formatDate(date: Date, format = 'yyyy-MM-dd') {
+    const datePipe = new DatePipe('en-US');
+    return datePipe.transform(date, format);
 }

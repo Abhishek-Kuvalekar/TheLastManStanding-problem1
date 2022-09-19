@@ -41,7 +41,7 @@
                                     <i class="fa fa-desktop"
                                         (mouseenter)="selectSeat($event, seat)"
                                         (click)="toggleSelection(seat)"
-                                        [ngClass]="selectedSeatIds.has(seat.SeatId) ? 'opaque-blue' : ''"></i>
+                                        [ngClass]="getSeatClass(seat)"></i>
                                 </ng-container>
                             </div>
                         </div>

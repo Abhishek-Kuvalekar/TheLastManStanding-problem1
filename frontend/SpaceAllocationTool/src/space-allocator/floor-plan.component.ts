@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { distinct } from 'src/common/utility-functions';
 import { InfrastructureDataService } from 'src/infrastructure-data/infrastructure-data.service';
 import { Building, Floor, Seat, Wing } from 'src/infrastructure-data/model';
@@ -8,9 +8,11 @@ import { Building, Floor, Seat, Wing } from 'src/infrastructure-data/model';
     templateUrl: './floor-plan.component.html',
     styleUrls: ['./floor-plan.component.scss']
 })
-export class FloorPlanComponent implements OnInit {
-    @Input() fromDate: Date;
-    @Input() toDate: Date;
+export class FloorPlanComponent implements OnInit, OnChanges {
+    @Input() availableSeats: Seat[] = [];
+    @Input() allocatedSeats: Seat[] = [];
+    @Output() seatSelected: EventEmitter<Seat> = new EventEmitter<Seat>();
+    @Output() seatRemoved: EventEmitter<Seat> = new EventEmitter<Seat>();
 
     buildings: Building[] = [];
     floors: Floor[] = [];
@@ -23,6 +25,8 @@ export class FloorPlanComponent implements OnInit {
     seatsPerWing: { [key: string]: Seat[]};
 
     selectedSeatIds: Set<number> = new Set<number>();
+    availableSeatIds: Set<number> = new Set<number>();
+    allocatedSeatIds: Set<number> = new Set<number>();
     
     constructor(
         private infraDataService: InfrastructureDataService
@@ -35,6 +39,14 @@ export class FloorPlanComponent implements OnInit {
         this.loadFloors(this.selectedBuildingId);
         this.selectedFloorId = this.floors.length && this.floors[0].FloorId;
         this.loadWingsAndSeats(this.selectedFloorId);
+    }
+
+    ngOnChanges() {
+        this.allocatedSeatIds.clear();
+        this.availableSeatIds.clear();
+
+        this.availableSeats?.forEach(s => this.availableSeatIds.add(s.SeatId));
+        this.allocatedSeats?.forEach(s => this.allocatedSeatIds.add(s.SeatId));
     }
 
     onSelectBuilding(buildingId: number) {
@@ -86,7 +98,12 @@ export class FloorPlanComponent implements OnInit {
         if (!seat) {
             return;
         }
+
+        if (!this.availableSeatIds.has(seat.SeatId)) {
+            return;
+        }
         this.selectedSeatIds.add(seat.SeatId);
+        this.seatSelected.emit(seat);
     }
 
     toggleSelection(seat: Seat) {
@@ -96,9 +113,27 @@ export class FloorPlanComponent implements OnInit {
         
         if (this.selectedSeatIds.has(seat.SeatId)) {
             this.selectedSeatIds.delete(seat.SeatId);
+            this.seatRemoved.emit(seat);
+            return;
+        }
+        if (!this.availableSeatIds.has(seat.SeatId)) {
             return;
         }
         this.selectedSeatIds.add(seat.SeatId);
+        this.seatSelected.emit(seat);
+    }
+
+    getSeatClass(seat: Seat) {
+        if (!this.availableSeatIds.has(seat.SeatId)) {
+            return 'light-grey';
+        }
+        if (this.allocatedSeatIds.has(seat.SeatId)) {
+            return 'light-opaque-blue';
+        }
+        if (this.selectedSeatIds.has(seat.SeatId)) {
+            return 'opaque-blue';
+        }
+        return '';
     }
 
     private async loadBuildings() {

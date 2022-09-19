@@ -41,6 +41,7 @@ internal class Program
         builder.Services.AddTransient<IRoomsRepository, RoomsRepository>();
         builder.Services.AddTransient<ISeatsRepository, SeatsRepository>();
         builder.Services.AddTransient<IWingsRepository, WingsRepository>();
+        builder.Services.AddTransient<IAllocationRepository, AllocationRepository>();
 
         var app = builder.Build();
 

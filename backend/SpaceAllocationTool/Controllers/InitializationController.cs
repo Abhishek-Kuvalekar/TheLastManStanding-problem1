@@ -50,7 +50,7 @@ namespace SpaceAllocationTool.Controllers {
             _oeCodesRepo.InitializeOeCodes();
             _employeeLevelsRepo.InitializeEmployeeLevels();
             _employeeRolesRepo.InitializeEmployeeRoles();
-            // _employeesRepo.InitializeEmployees();
+            _employeesRepo.InitializeEmployees();
             // _employeeOrganizationsRepo.InitializeEmployeeOrganizations();
             _buildingsRepo.InitializeBuildings();
             _floorsRepo.InitializeFloors();

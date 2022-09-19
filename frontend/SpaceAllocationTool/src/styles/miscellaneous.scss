@@ -49,10 +49,17 @@ body {
     width: 100% !important;
 }
 
+.width-fit-content {
+    width: fit-content !important;
+}
+
 .panel {
     margin: 10px;
     padding: 10px;
     border: 1px solid $light-grey;
     border-radius: 10px;
+}
 
+.bold {
+    font-weight: bold;
 }

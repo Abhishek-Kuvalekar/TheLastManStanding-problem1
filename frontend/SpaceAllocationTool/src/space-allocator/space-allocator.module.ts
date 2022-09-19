@@ -1,11 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormFieldModule } from 'src/common/form-field/form-field.module';
 import { InfrastructureDataServiceModule } from 'src/infrastructure-data/infrastructure-data-service.module';
 import { FloorPlanComponent } from './floor-plan.component';
 import { SpaceAllocatorComponent } from './space-allocator.component';
-
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { MockLoginModule } from 'src/common/mock-login/mock-login.module';
+import { AllocationDataModule } from 'src/allocation-data/allocation-data.module';
+ 
 const components = [
     SpaceAllocatorComponent,
     FloorPlanComponent
@@ -15,8 +19,13 @@ const components = [
     imports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
+        BsDatepickerModule.forRoot(),
+        BrowserAnimationsModule,
         InfrastructureDataServiceModule,
-        FormFieldModule
+        AllocationDataModule,
+        FormFieldModule,
+        MockLoginModule
     ],
     declarations: components,
     exports: [

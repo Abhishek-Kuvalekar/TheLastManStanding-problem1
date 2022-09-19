@@ -7,3 +7,16 @@
 .form-select:focus {
     box-shadow: 0 0 0 .25rem $focused-border-color !important;
 }
+
+.bs-datepicker-head {
+    background-color: $blue !important;
+}
+
+.bs-datepicker-body table td span.selected {
+    background-color: $blue !important;
+}
+
+.btn {
+    background-color: $blue !important;
+    border-color: $blue !important;
+}

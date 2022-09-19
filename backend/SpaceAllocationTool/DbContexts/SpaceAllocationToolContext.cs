@@ -14,13 +14,14 @@ namespace SpaceAllocationTool.DbContexts {
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Seat> Seats { get; set; }
         public DbSet<Wing> Wings { get; set; }
+        public DbSet<SeatAllocation> SeatAllocations { get; set; }
 
         public SpaceAllocationToolContext(DbContextOptions<SpaceAllocationToolContext> options): base(options) {
 
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
-            // Auto Increment of Primary Keys
+            // Auto Increment Primary Keys
             modelBuilder.Entity<Department>().Property(e => e.DepartmentId).ValueGeneratedOnAdd();
             modelBuilder.Entity<Employee>().Property(e => e.EmployeeId).ValueGeneratedOnAdd();
             modelBuilder.Entity<OeCode>().Property(e => e.OeCodeId).ValueGeneratedOnAdd();
@@ -32,6 +33,7 @@ namespace SpaceAllocationTool.DbContexts {
             modelBuilder.Entity<Room>().Property(e => e.RoomId).ValueGeneratedOnAdd();
             modelBuilder.Entity<Seat>().Property(e => e.SeatId).ValueGeneratedOnAdd();
             modelBuilder.Entity<Wing>().Property(e => e.WingId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<SeatAllocation>().Property(e => e.SeatAllocationId).ValueGeneratedOnAdd();
         }
     }
 }

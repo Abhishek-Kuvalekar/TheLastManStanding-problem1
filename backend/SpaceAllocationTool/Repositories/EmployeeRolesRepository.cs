@@ -17,7 +17,7 @@ namespace SpaceAllocationTool.Repositories {
             AddEmployeeRole("Admin");
             AddEmployeeRole("Managing Director");
             AddEmployeeRole("Director");
-            AddEmployeeRole("Vice Precident");
+            AddEmployeeRole("Vice President");
             AddEmployeeRole("Assistant Vice President");
             AddEmployeeRole("Exempt Non Officer");
             _db.SaveChanges();

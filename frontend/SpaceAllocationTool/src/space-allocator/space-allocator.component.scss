@@ -3,6 +3,21 @@
 .allocation-container {
     flex-basis: 25%;
     border-right: 1px solid rgb(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.allocation-title {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+// .allocation-form {
+//     padding: 10px;
+// }
+
+.employee-details, .selected-seats {
+    border: 1px dotted rgb(0, 0, 0, 0.5);
+    border-radius: 10px;
 }
 
 .floor-plan-container {
